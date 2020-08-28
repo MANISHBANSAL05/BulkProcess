@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <div class="card-custom">
+        <div class="card-header">
+            <div class="align-item-center">
+                <h1 class="col-12"><marquee direction="left">{{title}}</marquee></h1>
+            </div>
+        </div>
+        <div class="container">
+            <div class="vertical-cent">
+        <button class="btn btn-primary btn float-right" (click)="onTransactionNavigation()"  >
+            Batch ID Transaction Report
+            </button>
+         <button class="btn btn-primary btn float-right" (click)="onMsisdnNavigation()"  >
+            Batch ID MSISDN Mapping
+                </button>
+                </div>
+                </div>
+    </div>
+</div>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+

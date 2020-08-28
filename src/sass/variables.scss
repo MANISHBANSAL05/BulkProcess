@@ -1,0 +1,52 @@
+
+// .table {
+//     border: 1px solid map-get($colors, bg);
+//     background: white;
+// }
+// .table tbody tr {
+//     &:hover {
+//         background: map-get($colors, bg);
+//     }
+// }
+// .table td, .table th {
+//     padding: .5rem;    
+//     border-top: 2px solid map-get($colors, bg);
+// }
+// button + button {
+//     margin-left: 8px;
+// }
+
+// #page {    
+
+//     section {
+//         width: 100%;
+//         padding: 32px;
+//         border-radius: 8px;
+//         background: map-get($colors, white);
+//         box-shadow: $shadow;
+        
+//         .content-header {                        
+//             h1 {
+//                 font-size: map-get($text-size, header);
+//                 color: map-get($colors, secondary);
+//                 letter-spacing: 1px; 
+//                 margin-bottom: 48px;
+//                 font-family: 'telenor-bold';
+//             } 
+//         }
+//         .content-body {
+//             .sub-section {
+//                 border: 1px solid map-get($colors, light);
+//                 padding: 16px;
+//             }
+//             .sub-section-header {
+//                 h2 {
+//                     font-size: map-get($text-size, sub-header);
+//                     color: map-get($colors, secondary);
+//                     letter-spacing: 1px;
+//                     margin-bottom: 32px;                    
+//                 }
+//             }            
+//         }
+//     }
+// }

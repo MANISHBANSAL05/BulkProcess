@@ -1,0 +1,61 @@
+// @import "~src/sass/variables";
+#page {    
+    
+    .table tbody tr:not(.add-row) td{
+        padding-left: 16px;
+        button {
+            margin-left: -8px;
+        }
+    }
+}
+
+.table {
+        border: 1px solid;
+        background: white;
+    }
+.table tbody tr {
+            &:hover {
+                background: white;
+            }
+        }
+
+        .table td, .table th {
+                padding: .5rem;    
+                border-top: 2px solid;
+            }
+            button + button {
+                margin-left: 8px;
+            }
+            
+            #page {    
+            
+                section {
+                    width: 100%;
+                    padding: 32px;
+                    border-radius: 8px;
+                    background:  white;
+                    
+                    .content-header {                        
+                        h1 {
+                            font-size: 10px;
+                            color: black;
+                            letter-spacing: 1px; 
+                            margin-bottom: 48px;
+                            font-family: 'telenor-bold';
+                        } 
+                    }
+                    .content-body {
+                        .sub-section {
+                            border: 1px solid;
+                            padding: 16px;
+                        }
+                        .sub-section-header {
+                            h2 {
+                                font-size: 10px;
+                                letter-spacing: 1px;
+                                margin-bottom: 32px;                    
+                            }
+                        }            
+                    }
+                }
+            }

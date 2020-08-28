@@ -1,0 +1,141 @@
+<div class="container-fluid">
+    <div class="card custom">
+        <div class="card-header">
+            <div class="align-items-center">
+                <h3 class="mb-0">{{getTitle()}}</h3>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div *ngIf="form">
+                <form [formGroup]="form">
+                    <h6 class="heading-small text-muted mb-4">General information</h6>
+                    <div class="pl-lg-6">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="execution_type">Execeution Type</label>
+                                    <input type="text" id="execution_type" class="form-control"
+                                        formControlName="execution_type" disabled=true>
+                                    <!-- <app-contorl-message [control]="form.get('execution_type')"></app-contorl-message> -->
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="nid">POSCODE *</label>
+                                    <input type="text" id="poscode" class="form-control" formControlName="poscode">
+
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="emailId">EMAIL ID</label>
+                                    <input type="text" id="emailId" class="form-control" formControlName="emailId">
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row" *ngIf="(isEnable==false)">
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="nid">NID *</label>
+                                    <input type="text" id="nid" class="form-control" formControlName="nid">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="dob">DOB</label>
+                                    <input type="text" id="dob" class="form-control" formControlName="dob">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="bscode">BSCODE</label>
+                                    <input type="text" id="bscode" class="form-control" formControlName="bscode">
+
+                                    <!-- <input type="text" id="file" minlength="11" maxlength="11" appDigitsOnly="true"
+									class="form-control" placeholder="XXXXXXXXXXX"
+									formControlName="file"> -->
+                                    <!-- <app-contorl-message [control]="form.get('file')"></app-contorl-message> -->
+                                </div>
+                            </div>
+
+                        </div>
+                        <div *ngIf="mode == 'EDIT'" class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="batchId">BatchID *</label>
+                                    <input type="text" id="batchId" class="form-control" formControlName="batchId"
+                                        disabled=true>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="msisdn">MSISDN *</label>
+                                    <input type="text" id="msisdn" class="form-control" formControlName="msisdn">
+                                </div>
+                            </div>
+                            <div class="col-lg-4" *ngIf="(isEnable==true)">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="msisdn">SIMKIT *</label>
+                                    <input type="text" id="simkit" class="form-control" formControlName="simkit">
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <br>
+                        <div *ngIf="mode == 'CREATE'" class="row">
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <!-- <label class="form-control-label">Choose file</label> -->
+                                    <div class="custom-file">
+                                        <input type="file" (change)="onFileSelect($event)" accept=".jpg,.jpeg,.png" />
+                                        <!-- <img *ngIf="mode == 'CREATE'" alt="File not available" style="width:40px;height:30px;" src="{{imgViewSrc}}"> -->
+                                        <!-- <app-contorl-message [control]="form.get('file')"></app-contorl-message> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+
+                                    <div class="custom-file">
+                                        <!-- <button class="btn btn-outline-primary" (click)="downloadTemplate()">DOWNLOAD</button> -->
+                                        <!-- <button *ngIf="mode == 'EDIT'" class="btn btn-outline-primary" (click)="downloadEmptyTemplate()">Download EmptyTemplate</button> -->
+                                        <button *ngIf="mode == 'CREATE'" class="btn btn btn-outline-secondary"
+                                            (click)="downloadEmptyTemplate()">Download </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <hr class="my-4" />
+                    <div class="row">
+                        <div class="col sub-section text-right">
+                            <button type="button" class="btn btn btn-outline-secondary" (click)="onBack()">Back</button>
+                            <button type="button" class="btn btn btn-outline-secondary"
+                                (click)="onReset()">Reset</button>
+                            <!-- <button type="button" class="btn btn-primary" (click)="onCreate()" >Create</button> -->
+                            <!-- <button type="button" class="btn btn btn-outline-danger" mwlConfirmationPopover
+                            [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="top"
+                            (confirm)="onDelete()" (cancel)="cancelClicked = true" *ngIf="mode=='EDIT'">Delete</button> -->
+                            <button type="button" class="btn btn-primary" (click)="onSave()"
+                                *ngIf="mode=='EDIT'">Save</button>
+                            <button type="button" class="btn btn-primary" (click)="onCreate()"
+                                *ngIf="mode=='CREATE'">Create</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

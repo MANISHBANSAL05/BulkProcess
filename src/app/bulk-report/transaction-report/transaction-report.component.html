@@ -1,0 +1,121 @@
+<div class="conatiner-fluid">
+    <div class="card-custom">
+        <div class="card-header">
+            <div class="align-item-center">
+                <h1 class="col-12">{{title}}</h1>
+            </div>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="form">
+                <div class="pl-lg-6">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="startdate">Start Date</label>
+                                <input type="text" name="startdate" id="startdate"  ngbDatepicker
+                                #activationDate="ngbDatepicker" (click)="activationDate.toggle()"
+                                    [minDate]="todayseven()" [maxDate]="today()"
+                                    class="form-control" placeholder="dd-mm-yyyy" formControlName="startdate" >
+                                <!-- <input type="text" id="startdate" class="form-control" formControlName="startdate"> -->
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="enddate">End Date</label>
+                                <input type="text" name="enddate" id="enddate"  ngbDatepicker
+                                    #endDate="ngbDatepicker" (click)="endDate.toggle()"
+                                    [minDate]="todayseven()" [maxDate]="today()"
+                                    class="form-control" placeholder="dd-mm-yyyy" formControlName="enddate" >
+                                <!-- <input type="text" id="enddate" class="form-control" formControlName="enddate"> -->
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="batchId">Batch ID</label>
+                                <input type="text" id="batchId" class="form-control" formControlName="batchId">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Second Row -->
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="poscode">POS CODE</label>
+                                <input type="text" id="poscode" class="form-control" formControlName="poscode">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="processname">Process Name</label>
+                                <select name="" id="" class="form-control">
+                                    <option [ngValue]="undefined">Please Select</option>
+                                    <option class="othercolor" *ngFor="let option of bulkProcessList" [value]='option'>
+                                        {{option}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col sub-section text-right">
+                        <button type="button" class="btn btn-primary btn float-right"
+                            (click)="onReset()">Search</button>
+                    </div>
+                </div>
+            </form>
+            <!-- Search Result -->
+            <!-- <div *ngIf="showResults" class="mt-4"> -->
+                <h6 class="heading-small text-muted mb-4">Search Results</h6>
+                <!-- <div *ngIf="searchResults.length === 0">
+                    No data to display.
+                </div> -->
+               
+                <div class="table-wrapper">
+                    <table class="table table-responsive-md">
+                        <thead>
+                            <tr>
+                                <th>Service Name</th>
+                                <th>BS Code </th>
+                                <th>NID</th>
+                                <th>DOB</th>
+                                <th>POSCODE</th>
+                                <th>BATCH ID</th>
+                                <th>DATE</th>
+                                <th>USER NAME</th>
+                            </tr>
+                        </thead>
+                        <!-- <tbody>
+                            <tr
+                                *ngFor="let item of searchResults | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                                <td>{{item.transactionId}}</td>
+                                <td>{{(item.transactionDateTime|slice:0:19)}}</td>
+                                <td>{{item.pos}}</td>
+                                <td>{{item.msisdn}}</td>
+                                <td>{{item.simKit}}</td>
+                                <td>{{item.serviceName}}</td>
+                                <td>{{item.imei}}</td>
+                                <td>{{item.status}}</td>
+                                <td [matTooltip]="item.esbResponseCode">{{(item.esbResponseCode|slice:0:10)}}</td>
+                                <td [matTooltip]="item.remarks" ngxClipboard [cbContent]="item.remarks" #remark>{{(item.remarks|slice:0:10)}}</td>
+                            </tr>
+                        </tbody> -->
+                        <!-- (item.remarks|slice:0:10) -->
+                    </table>
+                    <!-- <div class="row justify-content-end">
+                        Show items &nbsp;<input type="number" class="mb-2 mr-sm-2" id="pageSize" [(ngModel)]="pageSize">
+                        <ngb-pagination #pagination   (pageChange)="getPage(pagination.hasNext())"  [(page)]="page" [pageSize]="pageSize" [collectionSize]="searchResults.length" [maxSize]="2" [boundaryLinks]="true" 
+                            class="mr-4"></ngb-pagination>
+                    </div> -->
+                    <div class="row">
+                        <div class="col sub-section text-right">
+                            <button type="button" class="btn btn-primary" (click)="onDownload()">Download</button>
+                        </div>
+                    </div>
+
+                </div>
+            <!-- </div> -->
+        </div>
+    </div>
+</div>

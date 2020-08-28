@@ -1,0 +1,26 @@
+<div class="content">
+    <router-outlet></router-outlet>
+</div>
+<!-- <app-bulk-file-list></app-bulk-file-list>
+<!-- <app-bulk-file-view></app-bulk-file-view> -->
+<!-- <h1>Problem</h1>
+<pre class="notes">We have 3 child routes: <code>angular, react, and ember</code>. 
+And we have a dropdown in the component. 
+We want the dropdown to match the activated route.</pre>
+
+<h1>Solution</h1>
+<p class="notes solution">Check the <a href="https://angular.io/api/router/RouterOutlet" target="_blank">documentation</a> on <code>router-outlet</code>. It has 2 useful events for us. One is (activate) and the other is (deactivated). Just add handlers for those events. In our case, (activate) will suffice.</p>
+<hr>
+<p>Click on the links to change route or use browser address bar</p>
+<a routerLink="/angular">Angular</a>
+<a routerLink="/react">React</a>
+<a routerLink="/ember">Ember</a>
+
+<div>
+	<select [(ngModel)]="currentRoute" (change)="routeTo(currentRoute)"> -->
+    <!-- ngValue can be used to bind object while value is suitable for binding string -->
+    <!-- <option *ngFor="let r of routes" [ngValue]="r.value">{{r.display}}</option>
+  </select>
+</div>
+{{currentRoute}}
+<router-outlet (activate)="onActivate($event)"></router-outlet> -->

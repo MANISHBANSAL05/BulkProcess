@@ -1,0 +1,5 @@
+<ul class="nav flex-column">
+    <li class="nav-item" *ngFor="let item of navList" >
+        <a class="nav-link" routerLinkActive="active" routerLink="{{item.link}}" (click)="onRouteSelected(item.link)">{{item.name}}</a>
+    </li>
+</ul>

@@ -1,0 +1,19 @@
+<div class="container-fluid">
+    <div class="card-custom">
+        <div class="card-header">
+            <div class="align-item-center">
+                <h3 class="mb-0">{{title}}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form">
+                <label class="form-control-label" for="batchID"><b>Batch ID</b></label>
+                <input type="text" id="batchID" class="form-control" [(ngModel)]='batchID'>
+                <!-- <app-contorl-message [control]="form.get('execution_type')"></app-contorl-message> -->
+            </div>
+        </div>
+        <button class="btn btn-primary btn float-right" (click)="onNext()"  >
+        NEXT
+        </button>
+    </div>
+</div>

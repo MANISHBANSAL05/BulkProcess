@@ -1,0 +1,213 @@
+<div class="container-fluid">
+    <div class="card-custom">
+        <div class="card-header">
+            <div class="align-item-cener">
+                <h1 class="col-12">
+                    <marquee direction="left">{{title}}</marquee>
+                </h1>
+            </div>
+        </div>
+        <!-- Execution type dropdown -->
+        <div class="card-body">
+            <div class="row">
+
+                <!-- <div class="form-group"> -->
+                <div class="col-lg-3">
+
+                    <select name="" id="" class="form-control" [(ngModel)]="selectedOptionFirst"
+                        (change)="onSelectProcess($event.target.value)">
+                        <option [ngValue]="undefined">Please Select</option>
+                        <option class="othercolor" *ngFor="let option of bulkProcessList" [value]='option'>
+                            {{option}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-lg-3">
+                    <select name="" id="" class="form-control" [(ngModel)]="selectedOption">
+                        <option [ngValue]="undefined">Please Select</option>
+                        <option class="othercolor" *ngFor="let option of searchBox" [value]='option'>
+                            {{option}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-lg-3">
+
+
+                    <input class="form-control-search" [maxLength]="getMaxLength()" [(ngModel)]="searchString"
+                        (keyup)="validateMsisdn()" placeholder="Please Search" name="searchString" type="text"
+                        appDigitsOnly="true" [disabled]="disableMsisdn">
+
+
+
+                    <button type="submit" class="searchbtn" (click)="onEdit(item.id)">
+                        <fa-icon [icon]="fa.faSearch"></fa-icon>
+                    </button>
+
+
+
+                </div>
+                <div class="col-lg-3">
+                    <button class="btn btn-primary btn float-right" (click)="onCreate()"
+                        [disabled]="selectedOptionFirst==null">
+                        <fa-icon [icon]="fa.faPlus"></fa-icon> Create New
+                    </button>
+                </div>
+            </div>
+
+            <!-- <div class="col-lg-6"> -->
+            <div class="form-group">
+
+                <!-- <small class="form-text text-danger">{{getMessage(errors.msisdn)}}</small> -->
+            </div>
+            <!-- </div> -->
+            <!-- </div> -->
+
+
+        </div>
+        <!-- View window -->
+        <div class="table-wrapper" *ngIf="!(selectedOptionFirst==null)">
+            <table class="table table-responsive-md">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" (change)="bulk($event)" [checked]="checks" />Select All</th>
+                        <ng-container
+                            *ngIf="(selectedOptionFirst=== 'Bulk KCP/MSSIDN Tagging' || selectedOptionFirst==='KCP Transfer' || selectedOptionFirst==null)">
+                            <ng-container *ngFor="let column of columnsAll">
+
+
+                                <th *ngIf="(column.label==='MSISDN')">{{column.label}}<br><input
+                                        class="form-control-headersearch" [(ngModel)]="searchText" autocomplete="off"
+                                        (keyup)="validateMsisdn()" placeholder="Please Search" name="searchText"
+                                        id="ed-srch-term" type="text"><button type="submit" class="headersearchbtn">
+                                        <fa-icon [icon]="fa.faSearch"></fa-icon>
+                                    </button></th>
+
+                                <th *ngIf="(column.label==='POSCODE')">{{column.label}}<br><input
+                                        class="form-control-headersearch" [(ngModel)]="searchText1" autocomplete="off"
+                                        (keyup)="validateMsisdn()" placeholder="Please Search" name="searchText"
+                                        id="ed-srch-term" type="text"><button type="submit" class="headersearchbtn">
+                                        <fa-icon [icon]="fa.faSearch"></fa-icon>
+                                    </button></th>
+
+
+                                <th *ngIf="!(column.label ==='MSISDN' || column.label === 'POSCODE')">{{column.label}}
+                                </th>
+
+                            </ng-container>
+                        </ng-container>
+                        <ng-container
+                            *ngIf="!(selectedOptionFirst === 'Bulk KCP/MSSIDN Tagging' || selectedOptionFirst==='KCP Transfer' || selectedOptionFirst==null)">
+                            <ng-container *ngFor="let column of columnsSelected">
+
+
+                                <th *ngIf="(column.label==='MSISDN')">{{column.label}}<br><input
+                                        class="form-control-headersearch" [(ngModel)]="searchText" autocomplete="off"
+                                        placeholder="Please Search" name="srch-term" id="ed-srch-term"
+                                        type="text"><button type="submit" class="headersearchbtn">
+                                        <fa-icon [icon]="fa.faSearch"></fa-icon>
+                                    </button></th>
+
+                                <th *ngIf="(column.label==='POSCODE')">{{column.label}}<br><input
+                                        class="form-control-headersearch" [(ngModel)]="searchText1" autocomplete="off"
+                                        placeholder="Please Search" name="srch-term" id="ed-srch-term"
+                                        type="text"><button type="submit" class="headersearchbtn">
+                                        <fa-icon [icon]="fa.faSearch"></fa-icon>
+                                    </button></th>
+
+                                <th *ngIf="!(column.label ==='MSISDN' || column.label === 'POSCODE')">{{column.label}}
+                                </th>
+                            </ng-container>
+                        </ng-container>
+
+
+                        <th>EDIT</th>
+                    </tr>
+
+                </thead>
+                <tbody *ngIf="bulkList.length > 0">
+
+                    <ng-container *ngIf="!(searchString==='')">
+
+                        <tr *ngFor="let item of bulkList | filter : {msisdn:searchString,bscode:searchString,poscode:searchString } as customList 
+                    let i=index;" (click)="setClickedRow(i)" [class.active]="i == selectedRow">
+
+
+
+                            <!-- filter:'execution_type':searchString"> -->
+                            <td><input type="checkbox" (click)="toggleSelection($event, i,item.msisdn)"
+                                    [checked]="checkboxes[i]" /> </td>
+                            <td>{{item.execution_type}}</td>
+                            <td>{{item.msisdn}}</td>
+                            <td>{{item.poscode}}</td>
+                            <td>{{item.bscode}}</td>
+                            <td>{{item.nid}}</td>
+                            <td>{{item.dob}}</td>
+
+                            <td>
+                                <button class="btn btn-outline-secondary btn-sm" (click)="onEdit(item.id)">
+                                    <fa-icon [icon]="fa.faEdit"></fa-icon>
+                                </button>
+                            </td>
+
+
+                        </tr>
+                    </ng-container>
+                    <ng-container *ngIf="(searchString==='')">
+
+                        <tr *ngFor="let item of bulkList | filter : ''
+                    let i=index;" (click)="setClickedRow(i)" [class.active]="i == selectedRow">
+
+
+                            <!-- filter:'execution_type':searchString"> -->
+                            <td><input type="checkbox" (click)="toggleSelection($event, i,item.msisdn)"
+                                    [checked]="checkboxes[i]" /> </td>
+                            <td>{{item.execution_type}}</td>
+                            <td>{{item.msisdn}}</td>
+                            <td>{{item.poscode}}</td>
+                            <td>{{item.bscode}}</td>
+                            <td>{{item.nid}}</td>
+                            <td>{{item.dob}}</td>
+
+                            <td>
+                                <button class="btn btn-outline-secondary btn-sm" (click)="onEdit(item.id)">
+                                    <fa-icon [icon]="fa.faEdit"></fa-icon>
+                                </button>
+                            </td>
+
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+
+
+            <div class="row justify-content-end">
+                <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="bulkList.length" class="mr-4">
+                </ngb-pagination>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-2">
+                    <button class="form-control" (click)="onADD()" [disabled]="selectedOptionFirst==null">
+                        <fa-icon [icon]="fa.faPlus"></fa-icon> ADD
+                    </button>
+                </div>
+                <div class="col-lg-2">
+                    <button class="form-control" (click)="delete()" [disabled]="selectedOptionFirst==null">
+                        Remove Selected
+                    </button>
+                </div>
+                <div class="col-lg-2">
+                    <button class="form-control" (click)="deleteAll()" [disabled]="selectedOptionFirst==null">
+                        Remove All
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <router-outlet></router-outlet>
+</div>

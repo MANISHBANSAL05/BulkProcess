@@ -1,0 +1,34 @@
+<!-- <table class="table table-bordered" cellspacing="0" cellpadding="0">
+    <thead>
+        <tr>
+            <td class="col-expand"></td>
+            <td class="col-large">Name</td>
+            <td>Last 1 Hour</td>
+            <td>Last 5 Mins</td>
+            <td>Node</td>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let data of gridData">            
+            <tr class="grid-row"  [ngClass]="{'hasChild': data.childList}">
+                <td><span class="expand-button" *ngIf="data.childList" (click)="toggleExpansion(data.name)">
+                    <span *ngIf="!isExpanded(data.name)">+</span>
+                    <span *ngIf="isExpanded(data.name)">-</span>
+                </span></td>
+                <td>{{data.name}}</td>
+                <td>{{data.hour}}</td>
+                <td>{{data.min}}</td>
+                <td></td>
+            </tr>
+            <ng-container *ngIf="data.childList">
+                <tr *ngFor="let child of data.childList" class="grid-row child" [ngClass]="{'collapsed': !isExpanded(data.name), 'expanded': isExpanded(data.name)}">
+                    <td></td>
+                    <td>{{child.name}}</td>
+                    <td>{{child.hour}}</td>
+                    <td>{{child.min}}</td>
+                    <td></td>
+                </tr>
+            </ng-container>            
+        </ng-container>
+    </tbody>
+</table> -->
